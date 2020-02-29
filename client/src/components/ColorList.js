@@ -58,6 +58,16 @@ const ColorList = ({ colors, updateColors }) => {
     .then(res => {
       console.log('SaveEdit response: ', res)
       setColorToEdit(res.data);
+      const editedColors = colors.map(col => {
+        return col.id === res.data.id ? res.data : col
+        
+        // if(col.id === res.data.id) {
+        //   return res.data;
+        // } else {
+        //   return col;
+        // }
+      })
+        updateColors(editedColors);
     })
     .catch(err => console.log(err));
   };
